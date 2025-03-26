@@ -162,17 +162,5 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    let targetOption = [...questions];
-    for (let i = 0; i < targetOption.length; i++) {
-        if (targetOption[i].id === targetId) {
-            let options = [...targetOption[i].options];
-            if (targetOptionIndex === -1) {
-                options.push(newOption);
-            } else {
-                options[targetOptionIndex] = newOption;
-            }
-            targetOption[i] = { ...targetOption[i], options: options };
-        }
-    }
-    return targetOption;
+    return [];
 }
