@@ -9,7 +9,7 @@ import { makeBlankQuestion } from "./objects";
 export function getPublishedQuestions(questions: Question[]): Question[] {
     let publishedQuestions = [];
     for (let i = 0; i < questions.length; i++) {
-        if (questions[i].published === true) {
+        if (questions[i].published) {
             publishedQuestions.push(questions[i]);
         }
     }
@@ -162,5 +162,17 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    let newArray: Question[] = [...questions];
+    for (let i: number = 0; i < newArray.length; i++) {
+        if (newArray[i].id === targetId) {
+            let newOptions: string[] = [...newArray[i].options];
+            if (targetOptionIndex === -1) {
+                newOptions.push(newOption);
+            } else {
+                newOptions[targetOptionIndex] = newOption;
+            }
+            newArray[i] = { ...newArray[i], options: newOptions };
+        }
+    }
+    return newArray;
 }
